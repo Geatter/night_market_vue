@@ -90,7 +90,9 @@ background-size: cover;
   width:80vw;
   margin: auto;
   background: rgba(0,0,0,0.6);
+  color: white;
   border-radius: 5vw;
+  text-align: center;
 }
 .el-tabs{
   color: white;
