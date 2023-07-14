@@ -22,7 +22,6 @@ export default defineComponent({
   mounted() {
     // 假資料生畫面
     store.commit('setDonateList');
-    console.log('donateList',this.donateList)
     document.title = '歡喜金名錄'
   }
 })
@@ -34,8 +33,8 @@ export default defineComponent({
     <el-carousel :interval="4000" indicator-position="none"  height="400px">
       <el-carousel-item v-for="item in donateList" :key="item">
         <h3 text="2xl" justify="center">{{ item.name }}</h3>
-        <p text="2xl" justify="center">贊&emsp;助：{{ item.money }}</p>
-        <p text="2xl" justify="center">祝福語：{{ item.greeting }}</p>
+        <h4 text="2xl" justify="center">歡喜金：{{ item.money }}</h4>
+        <p text="2xl" justify="center">Note：{{ item.greeting }}</p>
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -45,7 +44,7 @@ export default defineComponent({
 
 <style scoped>
 .wrap{
-  width: 1280px;
+  width: 1520px;
   background: url("@/assets/img/showOut_bg.png") center top no-repeat;
   background-size: cover;
   margin: auto;
@@ -62,6 +61,13 @@ export default defineComponent({
   font-size: 50px;
   opacity: 0.75;
   line-height: 200px;
+  margin: 0;
+  text-align: center;
+  font-weight: bold;
+}
+.el-carousel__item h4 {
+  font-size: 50px;
+  line-height: 100px;
   margin: 0;
   text-align: center;
   font-weight: bold;

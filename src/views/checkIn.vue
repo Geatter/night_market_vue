@@ -19,7 +19,6 @@ export default defineComponent({
   },
   methods:{
     submit(){
-      console.log('activeName:',this.activeName);
       // console.log('this.$children:',this.$refs.guest.guestVerifyData);
       let verify='';
       switch (this.activeName){
