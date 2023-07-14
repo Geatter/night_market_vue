@@ -10,13 +10,33 @@ export default defineComponent({
   },
   data(){
     return{
-      activeName:'first'
+      // 進入畫面時預設標籤顯示位置
+      activeName:'first',
+      showDialog:false,
+      resultOfOperate:'',
+      dialogTitle:'',
     }
   },
   methods:{
-    handleClick(TabsPaneContext,Event){
-      console.log('TabsPaneContext',TabsPaneContext)
-      console.log('Event',Event)
+    submit(){
+      console.log('activeName:',this.activeName);
+      // console.log('this.$children:',this.$refs.guest.guestVerifyData);
+      let verify='';
+      switch (this.activeName){
+        case "first":
+          verify = this.$refs.member.VerifyData();
+          break
+        case "second":
+          verify = this.$refs.guest.VerifyData();
+          break
+      };
+      if(typeof verify === "string"){
+        this.showDialog = true
+        this.dialogTitle = '錯誤!!'
+        this.resultOfOperate = verify
+      }else {
+        //   todo:打API傳資料.then
+      }
     }
   }
 })
@@ -27,39 +47,55 @@ export default defineComponent({
   <div class="wrap">
     <el-container direction="vertical">
       <el-main>
-        <el-tabs  v-model="activeName" @tab-click="handleClick">
+        <el-tabs  v-model="activeName">
           <el-tab-pane label="扶輪社友" name="first">
-            <Member></Member>
+            <Member ref="member"></Member>
           </el-tab-pane>
           <el-tab-pane label="來賓" name="second">
-            <Guest></Guest>
+            <Guest ref="guest"></Guest>
           </el-tab-pane>
         </el-tabs>
         <div class="button_group">
-          <el-button type="primary" size="large" round>
+          <el-button type="primary" size="large" round @click="submit">
             報到
           </el-button>
         </div>
       </el-main>
     </el-container>
+
+    <el-dialog v-model="showDialog" :title="dialogTitle" width="70%" align-center center>
+      <span>{{ resultOfOperate }}</span>
+      <template #footer>
+      <span class="dialog-footer">
+        <el-button type="primary" @click="showDialog = false">
+          確認
+        </el-button>
+      </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <style>
 .wrap{
+background: url("@/assets/img/index_bg.png") center top no-repeat;
   height: 100vh;
+background-size: cover;
 }
-#app,html,body,.el-container{
-  height:100%;
-}
-
-
-.el-tabs{
-  //background: rgba(0,0,0,0.5);
+.el-container{
   position: relative;
-  top: 70vw;
+  top: 29%;
+}
+.el-main{
+  width:80vw;
+  margin: auto;
+  background: rgba(0,0,0,0.6);
+  border-radius: 5vw;
+}
+.el-tabs{
   color: white;
-  width: 72vw;
+  width: 100%;
+  height: 47vh;
   margin: auto;
 
 }
@@ -71,10 +107,7 @@ export default defineComponent({
   color: white;
 }
 .button_group{
-  position: absolute;
-  top: 95%;
-  left: 50%;
-  transform: translate(-50%,0);
+  text-align: center;
   padding: 3vw;
 }
 .button_group button{

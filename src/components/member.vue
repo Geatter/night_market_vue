@@ -6,84 +6,24 @@ export default defineComponent({
   data(){
     return{
       value_group:'',
-      value_name:'',
-      options_name:[],
-      options_group:[
-        {
-          label:'option1',
-          value:'option1'
-        },
-        {
-          label:'option2',
-          value:'option2'
-        },
-        {
-          label:'option3',
-          value:'option3'
-        },
-        {
-          label:'option4',
-          value:'option4'
-        },
-        {
-          label:'option5',
-          value:'option5'
-        },
-        {
-          label:'option6',
-          value:'option6'
-        },
-        {
-          label:'option1',
-          value:'option1'
-        },
-        {
-          label:'option2',
-          value:'option2'
-        },
-        {
-          label:'option3',
-          value:'option3'
-        },
-        {
-          label:'option4',
-          value:'option4'
-        },
-        {
-          label:'option5',
-          value:'option5'
-        },
-        {
-          label:'option6',
-          value:'option6'
-        },
-        {
-          label:'option1',
-          value:'option1'
-        },
-        {
-          label:'option2',
-          value:'option2'
-        },
-        {
-          label:'option3',
-          value:'option3'
-        },
-        {
-          label:'option4',
-          value:'option4'
-        },
-        {
-          label:'option5',
-          value:'option5'
-        },
-        {
-          label:'option6',
-          value:'option6'
-        },
-      ],
+      value_member:'',
+      memberList:[],
+      groupList:[],
     }
   },
+  methods:{
+    VerifyData(){
+      if(this.value_group===''||this.value_member===''){
+        if (this.value_group===''){
+          return '請選擇所屬社名';
+        }else {
+          return "請填寫姓名";
+        }
+      }else {
+        return true
+      }
+    }
+  }
 })
 </script>
 
@@ -93,7 +33,7 @@ export default defineComponent({
     <h2>所屬社名：</h2>
     <el-select v-model="value_group" placeholder="請選擇" size="large">
       <el-option
-          v-for="item in options_group"
+          v-for="item in groupList"
           :key="item.value"
           :label="item.label"
           :value="item.value"
@@ -102,9 +42,9 @@ export default defineComponent({
   </div>
   <div class="select-group">
     <h2>姓名/Nickname</h2>
-    <el-select v-model="value_name" placeholder="請選擇" size="large">
+    <el-select v-model="value_member" placeholder="請選擇" size="large">
       <el-option
-          v-for="item in options_name"
+          v-for="item in memberList"
           :key="item.value"
           :label="item.label"
           :value="item.value"

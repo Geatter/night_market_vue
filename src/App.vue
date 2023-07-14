@@ -1,14 +1,12 @@
 <template>
-  <div class="background">
     <router-view/>
-  </div>
 </template>
 
 <style lang="less">
 @import "./assets/css/reset.css";
-.background{
-  background: url("./assets/img/index_bg.png") center top no-repeat;
-  background-size: cover;
+
+#app{
+  background-image: linear-gradient(to top, #e2007e,#122b88 );
 }
 
 
