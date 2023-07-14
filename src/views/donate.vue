@@ -13,6 +13,9 @@ export default defineComponent({
       dialogTitle:'',
     }
   },
+  mounted() {
+    document.title = '歡喜金捐助'
+  },
   methods:{
     VerifyData(){
       if(this.Group_Name === ''||this.greeting===''||this.money===''){
@@ -20,7 +23,7 @@ export default defineComponent({
           return '請輸入姓名或單位'
         }
         if(this.greeting ===''){
-          return '請輸入祝福語'
+          return '請輸入Note'
         }
         if(this.money){
           return '請輸入金額'
@@ -55,7 +58,7 @@ export default defineComponent({
           <el-input class="inputBox" v-model="Group_Name" type="text"></el-input>
         </div>
         <div class="input-group">
-          <label>祝福語</label>
+          <label>Note</label>
           <el-input class="inputBox" maxlength="20"  v-model="greeting" type="text"></el-input>
         </div>
         <div class="input-group">

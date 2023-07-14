@@ -15,7 +15,7 @@ export default createStore({
       state.donateList=[
         {
           name:'銀月數位顧問股份有限公司',
-          greeting:'恭祝活動順利進行',
+          greeting:'恭祝活動順利進行恭祝活動順利進行順利進行',
           money:'報到及歡喜金系統'
         },
         {

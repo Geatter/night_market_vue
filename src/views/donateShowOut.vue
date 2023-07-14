@@ -54,22 +54,17 @@ export default defineComponent({
   margin: auto;
   position: relative;
   top: 45%;
-  left: 0;
 }
 .el-carousel__item h3 {
   color: rgb(219, 219, 219);
   font-size: 50px;
   opacity: 0.75;
   line-height: 200px;
-  margin: 0;
-  text-align: center;
   font-weight: bold;
 }
 .el-carousel__item h4 {
   font-size: 50px;
-  line-height: 100px;
-  margin: 0;
-  text-align: center;
+  line-height: 70px;
   font-weight: bold;
 }
 
@@ -79,6 +74,6 @@ export default defineComponent({
   color: white;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 20px;
-  line-height: 50px;
+  line-height: 90px;
 }
 </style>
