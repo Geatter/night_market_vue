@@ -1,5 +1,7 @@
 <script>
 import {defineComponent} from 'vue'
+import {mapMutations, mapState} from "vuex";
+import store from "@/store";
 
 export default defineComponent({
   name: "guest",
@@ -8,10 +10,18 @@ export default defineComponent({
       value_group:'',
       value_guest:'',
       value_introducer:'',
-      groupList:[],
     }
   },
+  computed:{
+    ...mapState({
+      groupList:(state)=>state.groupList,
+    })
+  },
+  mounted() {
+    store.commit('setGroupList');
+  },
   methods:{
+    ...mapMutations(['setGroupList']),
     VerifyData(){
       if ((this.value_group === ''&&this.value_introducer==='')||this.value_guest === ''){
         if (this.value_guest === ''){

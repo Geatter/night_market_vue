@@ -1,5 +1,7 @@
 <script>
 import {defineComponent} from 'vue'
+import {mapMutations, mapState} from "vuex";
+import store from "@/store";
 
 export default defineComponent({
   name: "member",
@@ -7,11 +9,20 @@ export default defineComponent({
     return{
       value_group:'',
       value_member:'',
-      memberList:[],
-      groupList:[],
     }
   },
+  computed:{
+    ...mapState({
+      groupList:(state)=>state.groupList,
+      memberList:(state)=>state.memberList,
+    })
+  },
+  mounted() {
+    store.commit('setGroupList');
+    store.commit('setMemberList');
+  },
   methods:{
+    ...mapMutations(['setGroupList','setMemberList']),
     VerifyData(){
       if(this.value_group===''||this.value_member===''){
         if (this.value_group===''){
@@ -23,7 +34,8 @@ export default defineComponent({
         return true
       }
     }
-  }
+  },
+
 })
 </script>
 

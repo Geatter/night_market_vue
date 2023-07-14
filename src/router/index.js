@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import CheckIn from "@/views/checkIn.vue"
 import Donate from '@/views/donate.vue'
+import DonateShowOut from "@/views/donateShowOut.vue";
 
 
 const routes = [
@@ -13,6 +14,11 @@ const routes = [
     path: '/donate',
     name: 'donate',
     component: Donate
+  },
+  {
+    path: '/ShowOut',
+    name: 'DonateShowOut',
+    component: DonateShowOut
   }
 ]
 
