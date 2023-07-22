@@ -8,5 +8,12 @@ const checkIn = {
     },
     getMemberList:(param)=>{
         return fetchGet("",param)
+    },
+    getCheckInList:(param)=>{
+        return fetchGet("/api/rotary/list",param)
     }
+}
+
+export {
+    checkIn
 }

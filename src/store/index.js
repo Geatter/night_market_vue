@@ -1,10 +1,12 @@
 import { createStore } from 'vuex'
+import {checkIn} from "@/assets/axios/path";
 
 export default createStore({
   state: {
     groupList:[],
     memberList:[],
-    donateList:[]
+    donateList:[],
+    checkInList:[],
   },
   getters: {
   },
@@ -45,23 +47,15 @@ export default createStore({
         },
       ]
     },
-    setGroupList(state,list){
-      // state.groupList = list
-    //   假資料
-      state.groupList =[
-        {
-          label:"環河扶輪社",
-          value:'環河扶輪社'
-        },
-        {
-          label:"台北城中",
-          value:'台北城中'
-        },
-        {
-          label:"基隆東南",
-          value:'基隆東南'
-        },
-      ]
+    setGroupList(state){
+      state.checkInList.forEach((item,index)=>{
+        console.log("checkInList.forEach item:",item.groupName);
+        let dataObj={
+          label:item.groupName,
+          value:index,
+        }
+        state.groupList.push(dataObj);
+      })
     },
     setMemberList(state,list){
       // state.memberList = list
@@ -79,9 +73,21 @@ export default createStore({
           value:'Maki'
         },
       ]
+    },
+    setCheckInList(state,list){
+      state.checkInList = list
     }
   },
   actions: {
+     initCheckInData(context){
+       console.log("jason")
+      checkIn.getCheckInList().then(res=>{
+        if(res.code===0){
+          context.commit('setCheckInList',res.data);
+          context.commit('setGroupList');
+        }
+      })
+    }
   },
   modules: {
   }

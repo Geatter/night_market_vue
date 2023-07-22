@@ -18,7 +18,7 @@ export default defineComponent({
     })
   },
   mounted() {
-    store.commit('setGroupList');
+    // store.commit('setGroupList');
     store.commit('setMemberList');
   },
   methods:{

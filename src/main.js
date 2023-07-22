@@ -7,4 +7,6 @@ import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+await store.dispatch('initCheckInData')
+
 createApp(App).use(store).use(router).use(ElementPlus).use(VueAxios, axios).mount('#app')
