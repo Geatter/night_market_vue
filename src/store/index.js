@@ -14,23 +14,33 @@ export default createStore({
       // 假資料等API
       state.donateList=[
         {
-          name:'銀月數位顧問股份有限公司',
-          greeting:'恭祝活動順利進行恭祝活動順利進行順利進行',
-          money:'報到及歡喜金系統'
+          name:'昊天上帝',
+          greeting:'萬商景仰',
+          money:'99999'
         },
         {
-          name:'社團法人台北市環河扶輪社',
-          greeting:'恭祝活動順利進行',
-          money:'報到及歡喜金系統'
+          name:'東皇太一',
+          greeting:'成效卓著',
+          money:'8888'
         },
         {
-          name:'李政龍',
-          greeting:'恭祝活動順利進行',
-          money:'報到及歡喜金系統'
+          name:'原始天尊',
+          greeting:'大展鴻業',
+          money:'16800'
         },
         {
-          name:'白淺上神',
-          greeting:'恭祝活動順利進行',
+          name:'靈寶天尊',
+          greeting:'成績斐然 ',
+          money:'58888'
+        },
+        {
+          name:'九天玄女',
+          greeting:'萬客雲集',
+          money:'99900'
+        },
+        {
+          name:'玄天上帝',
+          greeting:'鴻圖大展',
           money:'1000'
         },
       ]
