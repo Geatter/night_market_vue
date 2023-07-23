@@ -11,6 +11,9 @@ const checkIn = {
     },
     getCheckInList:(param)=>{
         return fetchGet("/api/rotary/list",param)
+    },
+    memberCheckIn:(data)=>{
+        return fetchPost("/api/rotary/update",data)
     }
 }
 

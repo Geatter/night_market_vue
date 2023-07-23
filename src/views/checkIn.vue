@@ -2,6 +2,7 @@
 import {defineComponent} from 'vue'
 import Member from "@/components/member.vue";
 import Guest from "@/components/guest.vue";
+import {checkIn} from "@/assets/axios/path";
 export default defineComponent({
   name: "checkIn",
   components:{
@@ -14,6 +15,7 @@ export default defineComponent({
       activeName:'first',
       showDialog:false,
       resultOfOperate:'',
+      resultOfOperate_2:'',
       dialogTitle:'',
     }
   },
@@ -34,6 +36,32 @@ export default defineComponent({
         this.dialogTitle = '錯誤!!'
         this.resultOfOperate = verify
       }else {
+        let postData={
+          id:this.$refs.member.value_memberId,
+          // 'name':this.$refs.member.value_member.name,
+        }
+        checkIn.memberCheckIn(postData).then(res=>{
+          if(res.code===0){
+            this.showDialog=true;
+            this.dialogTitle = "報到成功";
+            let targetItem=this.$refs.member.checkInList[this.$refs.member.value_groupIndex]
+            let group_name = targetItem.groupName;
+            let memberPosition;
+            let memberName;
+            targetItem.nameList.forEach(item=>{
+              if(item.id === this.$refs.member.value_memberId){
+                memberPosition=item.position;
+                memberName=item.name;
+              }
+            })
+            console.log('roup_name',group_name);
+            console.log("memberPosition",memberPosition);
+            console.log("memberName",memberName);
+
+            this.resultOfOperate ='歡迎光臨';
+            this.resultOfOperate_2=group_name+' '+memberPosition+' '+memberName
+          }
+        })
         //   todo:打API傳資料.then
       }
     }
@@ -64,6 +92,9 @@ export default defineComponent({
 
     <el-dialog v-model="showDialog" :title="dialogTitle" width="70%" align-center center>
       <span>{{ resultOfOperate }}</span>
+      <hr>
+      <br>
+      <span>{{ resultOfOperate_2 }} </span>
       <template #footer>
       <span class="dialog-footer">
         <el-button type="primary" @click="showDialog = false">

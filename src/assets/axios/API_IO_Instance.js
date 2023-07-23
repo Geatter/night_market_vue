@@ -14,11 +14,11 @@ export async function fetchPost(url,data){
     // URL修飾
     url=url
     // 處理準備發出的的data
-    if(typeof data === 'object'){
-        data=JSON.param(data);
-    }
+    // if(typeof data === 'object'){
+    //     data=JSON.stringify(data);
+    // }
     return new Promise((resolve, reject) => {
-        API_IO_Instance.post(url,data).then(response => {
+        API_IO_Instance.put(url,data).then(response => {
             resolve(response.data);
         }).catch((error) => {
             // reject(error);

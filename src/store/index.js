@@ -49,7 +49,6 @@ export default createStore({
     },
     setGroupList(state){
       state.checkInList.forEach((item,index)=>{
-        console.log("checkInList.forEach item:",item.groupName);
         let dataObj={
           label:item.groupName,
           value:index,
@@ -58,21 +57,7 @@ export default createStore({
       })
     },
     setMemberList(state,list){
-      // state.memberList = list
-      state.memberList=[
-        {
-          label:'李政龍',
-          value:'李政龍'
-        },
-        {
-          label:'Sam',
-          value:'Sam'
-        },
-        {
-          label:'Maki',
-          value:'Maki'
-        },
-      ]
+      state.memberList = list
     },
     setCheckInList(state,list){
       state.checkInList = list
