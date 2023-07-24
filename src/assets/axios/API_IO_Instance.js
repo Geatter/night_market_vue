@@ -2,11 +2,12 @@ import axios from 'axios';
 
 let Location_URL=location.href
 let Evn_URL = process.env.VUE_APP_apiCtx
+let port=":8089/"
 let final_URL
 if(Evn_URL!==undefined){
-    final_URL=Evn_URL.substring(0,Evn_URL.indexOf(':',5))+":8089/"
+    final_URL=Evn_URL.substring(0,Evn_URL.indexOf(':',5))+port
 }else if(Location_URL!==undefined){
-    final_URL=Location_URL.substring(0,Location_URL.indexOf(':',5))+":8089/"
+    final_URL=Location_URL.substring(0,Location_URL.indexOf(':',5))+port
 }
 if(location.hostname==='localhost'){
     final_URL=undefined;
