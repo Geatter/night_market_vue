@@ -50,7 +50,6 @@ export default createStore({
     },
     actions: {
         initCheckInData(context) {
-            console.log("jason")
             checkIn.getCheckInList().then(res => {
                 if (res.code === 0) {
                     context.commit('setCheckInList', res.data);

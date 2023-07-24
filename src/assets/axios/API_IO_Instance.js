@@ -1,7 +1,23 @@
 import axios from 'axios';
 
+let Location_URL=location.href
+let Evn_URL = process.env.VUE_APP_apiCtx
+let final_URL
+if(Evn_URL!==undefined){
+    final_URL=Evn_URL.substring(0,Evn_URL.indexOf(':',5))+":8089/"
+}else if(Location_URL!==undefined){
+    final_URL=Location_URL.substring(0,Location_URL.indexOf(':',5))+":8089/"
+}
+if(location.hostname==='localhost'){
+    final_URL=undefined;
+}
+console.log('Location_URL)',Location_URL);
+console.log('Evn_URL',Evn_URL);
+console.log('final_URL',final_URL);
+
+
 let API_IO_Instance =axios.create({
-    baseURL:process.env.VUE_APP_apiCtx,
+    baseURL:final_URL,
 })
 
 //API接口監聽
