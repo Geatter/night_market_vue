@@ -25,7 +25,7 @@ export default defineComponent({
       switch (this.activeName){
         case "first":
           verify = this.$refs.member.VerifyData();
-          if(verify){
+          if(typeof verify !== "string"){
             let putData={
               id:this.$refs.member.value_memberId,
             }
@@ -45,6 +45,9 @@ export default defineComponent({
                 })
                 this.resultOfOperate ='歡迎光臨';
                 this.resultOfOperate_2=group_name+' '+memberPosition+' '+memberName
+                document.getElementById('checkIn_button').disabled=true;
+                this.$refs.member.value_groupIndex='';
+                this.$refs.member.value_memberId='';
               }else {
                 this.showDialog=true;
                 this.dialogTitle = "錯誤:"+res.code;
@@ -55,7 +58,7 @@ export default defineComponent({
           break
         case "second":
           verify = this.$refs.guest.VerifyData();
-          if(verify){
+          if(typeof verify !== "string"){
             let group_name = this.$refs.member.checkInList[this.$refs.guest.value_groupIndex].groupName;
             let guestName = this.$refs.guest.name_guest;
             let putData={
@@ -70,6 +73,10 @@ export default defineComponent({
                 this.dialogTitle = "報到成功";
                 this.resultOfOperate ='歡迎光臨';
                 this.resultOfOperate_2=group_name+' '+guestName
+                document.getElementById('checkIn_button').disabled=true;
+                this.$refs.guest.value_groupIndex='';
+                this.$refs.guest.name_recommender='';
+                this.$refs.guest.name_guest='';
               }else {
                 this.showDialog=true;
                 this.dialogTitle = "錯誤:"+res.code;
@@ -78,7 +85,7 @@ export default defineComponent({
             })
           }
           break
-      };
+      }
       if(typeof verify === "string"){
         this.showDialog = true
         this.dialogTitle = '錯誤!!'
@@ -109,7 +116,7 @@ export default defineComponent({
           </el-tab-pane>
         </el-tabs>
         <div class="button_group">
-          <el-button type="primary" size="large" round @click="submit">
+          <el-button id="checkIn_button" type="primary" size="large" round @click="submit">
             報到
           </el-button>
         </div>

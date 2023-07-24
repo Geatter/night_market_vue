@@ -71,7 +71,7 @@ export default defineComponent({
   </div>
   <div class="select-group">
     <h2>姓名/Nickname</h2>
-    <el-select v-model="value_memberId" placeholder="請選擇" size="large" @change="console.log('value_member:',value_memberId)">
+    <el-select v-model="value_memberId" placeholder="請選擇" size="large">
       <el-option
           v-for="item in memberList"
           :key="item.value"
