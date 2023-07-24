@@ -11,12 +11,17 @@ API_IO_Instance.interceptors.response.use( (response)=>{
 })
 // Post
 export async function fetchPost(url,data){
-    // URL修飾
-    url=url
-    // 處理準備發出的的data
-    // if(typeof data === 'object'){
-    //     data=JSON.stringify(data);
-    // }
+    return new Promise((resolve, reject) => {
+        API_IO_Instance.put(url,data).then(response => {
+            resolve(response.data);
+        }).catch((error) => {
+            // reject(error);
+            console.error(error);
+        })
+    })
+}
+//Put
+export async function fetchPut(url,data){
     return new Promise((resolve, reject) => {
         API_IO_Instance.put(url,data).then(response => {
             resolve(response.data);
@@ -28,8 +33,6 @@ export async function fetchPost(url,data){
 }
 // Get
 export async function fetchGet(url,param){
-    // URL修飾
-    url=url
     return new Promise((resolve, reject) => {
         API_IO_Instance.get(url,param).then(response => {
             resolve(response.data);

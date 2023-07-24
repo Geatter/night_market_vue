@@ -21,49 +21,75 @@ export default defineComponent({
   },
   methods:{
     submit(){
-      // console.log('this.$children:',this.$refs.guest.guestVerifyData);
       let verify='';
       switch (this.activeName){
         case "first":
           verify = this.$refs.member.VerifyData();
+          if(verify){
+            let putData={
+              id:this.$refs.member.value_memberId,
+            }
+            checkIn.memberCheckIn(putData).then(res=>{
+              if(res.code===0){
+                this.showDialog=true;
+                this.dialogTitle = "報到成功";
+                let targetItem=this.$refs.member.checkInList[this.$refs.member.value_groupIndex]
+                let group_name = targetItem.groupName;
+                let memberPosition;
+                let memberName;
+                targetItem.nameList.forEach(item=>{
+                  if(item.id === this.$refs.member.value_memberId){
+                    memberPosition=item.position;
+                    memberName=item.name;
+                  }
+                })
+                this.resultOfOperate ='歡迎光臨';
+                this.resultOfOperate_2=group_name+' '+memberPosition+' '+memberName
+              }else {
+                this.showDialog=true;
+                this.dialogTitle = "錯誤:"+res.code;
+                this.resultOfOperate ='請聯絡現場服務人員';
+              }
+            })
+          }
           break
         case "second":
           verify = this.$refs.guest.VerifyData();
+          if(verify){
+            let group_name = this.$refs.member.checkInList[this.$refs.guest.value_groupIndex].groupName;
+            let guestName = this.$refs.guest.name_guest;
+            let putData={
+              groupName:group_name,
+              name:guestName,
+              position:'現場來賓',
+              recommender:this.$refs.guest.name_recommender
+            }
+            checkIn.guestCheckIn(putData).then(res=>{
+              if(res.code===0){
+                this.showDialog=true;
+                this.dialogTitle = "報到成功";
+                this.resultOfOperate ='歡迎光臨';
+                this.resultOfOperate_2=group_name+' '+guestName
+              }else {
+                this.showDialog=true;
+                this.dialogTitle = "錯誤:"+res.code;
+                this.resultOfOperate ='請聯絡現場服務人員';
+              }
+            })
+          }
           break
       };
       if(typeof verify === "string"){
         this.showDialog = true
         this.dialogTitle = '錯誤!!'
         this.resultOfOperate = verify
-      }else {
-        let postData={
-          id:this.$refs.member.value_memberId,
-          // 'name':this.$refs.member.value_member.name,
-        }
-        checkIn.memberCheckIn(postData).then(res=>{
-          if(res.code===0){
-            this.showDialog=true;
-            this.dialogTitle = "報到成功";
-            let targetItem=this.$refs.member.checkInList[this.$refs.member.value_groupIndex]
-            let group_name = targetItem.groupName;
-            let memberPosition;
-            let memberName;
-            targetItem.nameList.forEach(item=>{
-              if(item.id === this.$refs.member.value_memberId){
-                memberPosition=item.position;
-                memberName=item.name;
-              }
-            })
-            console.log('roup_name',group_name);
-            console.log("memberPosition",memberPosition);
-            console.log("memberName",memberName);
-
-            this.resultOfOperate ='歡迎光臨';
-            this.resultOfOperate_2=group_name+' '+memberPosition+' '+memberName
-          }
-        })
-        //   todo:打API傳資料.then
       }
+    },
+    dialogClose(){
+      this.showDialog = false;
+      this.resultOfOperate = '';
+      this.resultOfOperate_2 = '';
+      this.dialogTitle = '';
     }
   }
 })
@@ -97,7 +123,7 @@ export default defineComponent({
       <span>{{ resultOfOperate_2 }} </span>
       <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="showDialog = false">
+        <el-button type="primary" @click="dialogClose">
           確認
         </el-button>
       </span>

@@ -1,46 +1,66 @@
 <script>
 import {defineComponent} from 'vue'
+import {donate} from "@/assets/axios/path";
 
 export default defineComponent({
   name: "donate",
-  data(){
-    return{
-      Group_Name:'',
-      greeting:'',
-      money:'',
-      showDialog:false,
-      resultOfOperate:'',
-      dialogTitle:'',
+  data() {
+    return {
+      Group_Name: '',
+      greeting: '',
+      money: '',
+      showDialog: false,
+      resultOfOperate: '',
+      dialogTitle: '',
     }
   },
   mounted() {
     document.title = '歡喜金捐助'
   },
-  methods:{
-    VerifyData(){
-      if(this.Group_Name === ''||this.greeting===''||this.money===''){
-        if(this.Group_Name === ''){
+  methods: {
+    VerifyData() {
+      if (this.Group_Name === '' || this.greeting === '' || this.money === '') {
+        if (this.Group_Name === '') {
           return '請輸入姓名或單位'
         }
-        if(this.greeting ===''){
+        if (this.greeting === '') {
           return '請輸入Note'
         }
-        if(this.money){
+        if (this.money) {
           return '請輸入金額'
         }
-      }else {
+      } else {
         return true
       }
     },
-    submit(){
-      let verify= this.VerifyData();
-      if(typeof verify === "string"){
+    submit() {
+      let verify = this.VerifyData();
+      if (typeof verify === "string") {
         this.showDialog = true
         this.dialogTitle = '錯誤!!'
         this.resultOfOperate = verify
-      }else {
-        //   todo:打API傳資料.then
+      } else {
+        let putData = {
+          "fromName": this.Group_Name,
+          "note": this.greeting,
+          "price": this.money
+        }
+        donate.donate(putData).then(res => {
+          if (res.code === 0) {
+            this.showDialog = true
+            this.dialogTitle = '歡喜金發送成功!!'
+            this.resultOfOperate = '非常感謝您的支持與愛護'
+          }
+        })
       }
+    },
+    dialogClose() {
+      this.showDialog = false;
+      this.Group_Name = '';
+      this.greeting = '';
+      this.money = '';
+      this.resultOfOperate = '';
+      this.dialogTitle = '';
     }
   }
 })
@@ -51,19 +71,21 @@ export default defineComponent({
     <el-container>
 
       <el-main>
-<!--        <h2>歡喜金</h2>-->
-<!--        <hr>-->
+        <!--        <h2>歡喜金</h2>-->
+        <!--        <hr>-->
         <div class="input-group">
           <label>姓名/單位</label>
-          <el-input class="inputBox" v-model="Group_Name" type="text"></el-input>
+          <span>(限14個字)</span>
+          <el-input class="inputBox" maxlength="14" v-model="Group_Name" type="text"></el-input>
         </div>
         <div class="input-group">
           <label>Note</label>
-          <el-input class="inputBox" maxlength="20"  v-model="greeting" type="text"></el-input>
+          <span>(限20個字)</span>
+          <el-input class="inputBox" maxlength="20" v-model="greeting" type="text"></el-input>
         </div>
         <div class="input-group">
           <label>歡喜金</label>
-          <el-input  class="inputBox" v-model="money" type="number" pattern="[0-9]*"></el-input>
+          <el-input class="inputBox" v-model="money" type="number" pattern="[0-9]*"></el-input>
           元整
         </div>
         <div class="button_group">
@@ -77,7 +99,7 @@ export default defineComponent({
       <span>{{ resultOfOperate }}</span>
       <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="showDialog = false">
+        <el-button type="primary" @click="dialogClose">
           確認
         </el-button>
       </span>
@@ -87,26 +109,29 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.wrap{
+.wrap {
   background: url("@/assets/img/index_bg.png") center top no-repeat;
   height: 100vh;
   background-size: cover;
 }
 
-h2{
+h2 {
   font-size: 9vw;
   font-weight: bold;
 }
-.input-group{
+
+.input-group {
   margin: auto;
   width: 85vw;
   padding: 2vw 0 8vw 0;
 }
-label{
+
+label {
   font-size: 9vw;
   font-weight: bold;
 }
-.inputBox{
+
+.inputBox {
   padding: 3vw 0 0 0;
 }
 </style>

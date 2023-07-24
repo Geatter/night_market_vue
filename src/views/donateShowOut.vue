@@ -1,4 +1,5 @@
 <script>
+
 import {defineComponent} from 'vue'
 import {mapMutations, mapState} from "vuex";
 import store from "@/store";
@@ -16,11 +17,12 @@ export default defineComponent({
         })
   },
   methods:{
-    // 假資料生畫面
     ...mapMutations(['setDonateList']),
   },
   mounted() {
-    // 假資料生畫面
+    setInterval(()=>{
+      store.commit('setDonateList');
+    },(this.donateList.length*6+15)*1000);
     store.commit('setDonateList');
     document.title = '歡喜金名錄'
   }
@@ -30,7 +32,7 @@ export default defineComponent({
 <template>
 <div class="wrap">
   <div class="carousel-item">
-    <el-carousel :interval="4000" indicator-position="none"  height="400px">
+    <el-carousel :interval="5000" indicator-position="none"  height="500px">
       <el-carousel-item >
         <h3 class="SliMoonQRCode-title" text="2xl" justify="center">銀月數位顧問股份有限公司</h3>
         <img class="SliMoonQRCode-img" src="@/assets/img/Sliver_Moon_LINE_QRcode.png" alt="銀月官方Line QR CODE">
@@ -47,9 +49,9 @@ export default defineComponent({
         <p text="2xl" justify="center">恭祝活動圓滿成功！</p>
       </el-carousel-item>
       <el-carousel-item v-for="item in donateList" :key="item">
-        <h3 text="2xl" justify="center">{{ item.name }}</h3>
-        <h4 text="2xl" justify="center">歡喜金：{{ item.money }}</h4>
-        <p text="2xl" justify="center">Note：{{ item.greeting }}</p>
+        <h3>{{ item.name }}  <i>歡喜金：{{ item.money }}</i> </h3>
+        <br>
+        <h4 text="2xl" justify="center">Note：{{ item.greeting }}</h4>
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -65,19 +67,24 @@ export default defineComponent({
   margin: auto;
 }
 .carousel-item{
-  width: 60%;
+  width: 90%;
   margin: auto;
   position: relative;
   top: 45%;
 }
 .el-carousel__item h3 {
   color: rgb(219, 219, 219);
-  font-size: 50px;
-  opacity: 0.75;
+  display: flex;
+  justify-content:Space-around;
+  font-size: 60px;
   line-height: 200px;
   font-weight: bold;
 }
+.el-carousel__item i {
+  color: white;
+}
 .el-carousel__item h4 {
+  color: white;
   font-size: 50px;
   line-height: 70px;
   font-weight: bold;

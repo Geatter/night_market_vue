@@ -7,9 +7,9 @@ export default defineComponent({
   name: "guest",
   data(){
     return{
-      value_group:'',
-      value_guest:'',
-      value_introducer:'',
+      value_groupIndex:'',
+      name_guest:'',
+      name_recommender:'',
     }
   },
   computed:{
@@ -23,8 +23,8 @@ export default defineComponent({
   methods:{
     ...mapMutations(['setGroupList']),
     VerifyData(){
-      if ((this.value_group === ''&&this.value_introducer==='')||this.value_guest === ''){
-        if (this.value_guest === ''){
+      if ((this.value_groupIndex === ''&&this.name_recommender==='')||this.name_guest === ''){
+        if (this.name_guest === ''){
           return "請填寫姓名";
         }else {
           return '請選擇所屬社名或填寫介紹人';
@@ -41,7 +41,7 @@ export default defineComponent({
 <div class="guest-container">
     <div class="select-group">
       <h2>所屬社名：</h2>
-      <el-select v-model="value_group" placeholder="請選擇" size="large">
+      <el-select v-model="value_groupIndex" placeholder="請選擇" size="large">
         <el-option
             v-for="item in groupList"
             :key="item.value"
@@ -52,12 +52,12 @@ export default defineComponent({
     </div>
     <div class="input-group">
       <h2>姓名/Nickname</h2>
-      <el-input v-model="value_guest" size="large" clearable>
+      <el-input v-model="name_guest" size="large" clearable>
       </el-input>
     </div>
   <div class="input-group">
     <h2>介紹人</h2>
-    <el-input v-model="value_introducer" size="large" clearable>
+    <el-input v-model="name_recommender" size="large" clearable>
     </el-input>
   </div>
 

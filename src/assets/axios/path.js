@@ -1,4 +1,4 @@
-import{fetchPost,fetchGet} from '@/assets/axios/API_IO_Instance'
+import {fetchPost, fetchGet, fetchPut} from '@/assets/axios/API_IO_Instance'
 
 const checkIn = {
     /**
@@ -7,16 +7,28 @@ const checkIn = {
         return fetchGet("",param);
     },
     getMemberList:(param)=>{
-        return fetchGet("",param)
+        return fetchGet("",param);
     },
     getCheckInList:(param)=>{
-        return fetchGet("/api/rotary/list",param)
+        return fetchGet("/api/rotary/list",param);
     },
     memberCheckIn:(data)=>{
-        return fetchPost("/api/rotary/update",data)
+        return fetchPut("/api/rotary/update",data);
+    },
+    guestCheckIn:(data)=>{
+        return fetchPut("/api/rotary/insert",data);
+    }
+}
+const donate={
+    donate:(data)=>{
+        return fetchPut("/api/rotary/happybless/insert",data);
+    },
+    getDonateList:(param)=>{
+        return fetchGet("/api/rotary/happybless/list",param);
     }
 }
 
 export {
-    checkIn
+    checkIn,
+    donate
 }
