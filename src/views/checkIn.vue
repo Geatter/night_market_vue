@@ -145,38 +145,16 @@ background: url("@/assets/img/index_bg.png") center top no-repeat;
   height: 100vh;
 background-size: cover;
 }
-.el-container{
-  position: relative;
-  top: 29%;
-}
-.el-main{
-  width:80vw;
-  margin: auto;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  border-radius: 5vw;
-  text-align: center;
-}
-.el-tabs{
-  color: white;
-  width: 100%;
-  height: 47vh;
-  margin: auto;
-
-}
-.el-tabs__item{
-  margin: 1vw 3vw;
-  padding: 0 6vw;
-  font-size: 7vw;
-  font-weight: bold;
-  color: white;
-}
 .button_group{
   text-align: center;
   padding: 3vw;
 }
 .button_group button{
   font-size: 8vw;
+}
+
+@media screen {
+
 }
 
 

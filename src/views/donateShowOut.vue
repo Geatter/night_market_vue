@@ -90,14 +90,6 @@ export default defineComponent({
   font-weight: bold;
 }
 
-.el-carousel__item {
-  text-align: center;
-  font-size: 30px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 20px;
-  line-height: 90px;
-}
 .SliMoonQRCode-img{
   width: 18%;
   position: relative;

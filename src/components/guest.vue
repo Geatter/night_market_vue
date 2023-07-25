@@ -78,9 +78,7 @@ export default defineComponent({
   padding: 0 0 3vw 0;
   font-size: 8vw;
 }
-.el-input{
-  width: 80%;
-}
+
 
 
 </style>
