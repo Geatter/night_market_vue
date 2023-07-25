@@ -1,5 +1,4 @@
 <script>
-
 import {defineComponent} from 'vue'
 import {mapMutations, mapState} from "vuex";
 import store from "@/store";
@@ -69,8 +68,7 @@ export default defineComponent({
 .carousel-item{
   width: 90%;
   margin: auto;
-  position: relative;
-  top: 45%;
+  padding: 450px 0 130px 0;
 }
 .el-carousel__item h3 {
   color: rgb(219, 219, 219);

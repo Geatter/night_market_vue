@@ -17,6 +17,14 @@ export default defineComponent({
   mounted() {
     document.title = '歡喜金捐助'
   },
+  watch: {
+    //金額限制六位數
+    money: function (){
+      if(this.money.length>7){
+        this.money=this.money.slice(0,7);
+      }
+    }
+  },
   methods: {
     VerifyData() {
       if (this.Group_Name === '' || this.greeting === '' || this.money === '') {
@@ -68,11 +76,8 @@ export default defineComponent({
 
 <template>
   <div class="wrap">
-    <el-container>
-
+    <el-container class="donate-container">
       <el-main>
-        <!--        <h2>歡喜金</h2>-->
-        <!--        <hr>-->
         <div class="input-group">
           <label>姓名/單位</label>
           <span>(限14個字)</span>
@@ -86,7 +91,9 @@ export default defineComponent({
         <div class="input-group">
           <label>歡喜金</label>
           <el-input class="inputBox" v-model="money" type="number" pattern="[0-9]*"></el-input>
-          元整
+          <br>
+          <br>
+          <span>元整</span>
         </div>
         <div class="button_group">
           <el-button type="primary" size="large" round @click="submit">
@@ -108,30 +115,37 @@ export default defineComponent({
   </div>
 </template>
 
-<style scoped>
-.wrap {
-  background: url("@/assets/img/index_bg.png") center top no-repeat;
-  height: 100vh;
-  background-size: cover;
-}
+<style>
+@media only screen and (max-width: 992px) {
+  .wrap {
+    background: url("@/assets/img/index_bg.png") center top no-repeat;
+    height: 100vh;
+    background-size: cover;
+  }
 
-h2 {
-  font-size: 9vw;
-  font-weight: bold;
-}
+  .donate-container {
+    width: 95%;
+    margin: auto;
+  }
 
-.input-group {
-  margin: auto;
-  width: 85vw;
-  padding: 2vw 0 8vw 0;
-}
+  h2 {
+    font-size: 9vw;
+    font-weight: bold;
+  }
 
-label {
-  font-size: 9vw;
-  font-weight: bold;
-}
+  .input-group {
+    margin: auto;
+    width: 80vw;
+    padding: 2vw 0 8vw 0;
+  }
 
-.inputBox {
-  padding: 3vw 0 0 0;
+  label {
+    font-size: 9vw;
+    font-weight: bold;
+  }
+
+  .inputBox {
+    padding: 3vw 0 0 0;
+  }
 }
 </style>
