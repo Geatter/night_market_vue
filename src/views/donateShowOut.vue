@@ -38,11 +38,11 @@ export default defineComponent({
         <img class="SliMoonQRCode-img" src="@/assets/img/Sliver_Moon_LINE_QRcode.png" alt="銀月官方Line QR CODE">
         <p class="SliMoonNote" text="2xl" justify="center">⬆️⬆️⬆️軟體系統開發諮詢⬆️⬆️⬆️</p>
       </el-carousel-item>
-      <el-carousel-item >
-        <h3 text="2xl" justify="center">社團法人台北市環河扶輪社</h3>
-                <h4 text="2xl" justify="center">本報到及歡喜金系統</h4>
-        <p text="2xl" justify="center">根深葉茂無疆業，源遠流長有道財。</p>
-      </el-carousel-item>
+<!--      <el-carousel-item >-->
+<!--        <h3 text="2xl" justify="center">社團法人台北市環河扶輪社</h3>-->
+<!--                <h4 text="2xl" justify="center">本報到及歡喜金系統</h4>-->
+<!--        <p text="2xl" justify="center">根深葉茂無疆業，源遠流長有道財。</p>-->
+<!--      </el-carousel-item>-->
       <el-carousel-item >
         <h3 text="2xl" justify="center">李政龍</h3>
         <h4 text="2xl" justify="center">本報到及歡喜金網頁畫面</h4>

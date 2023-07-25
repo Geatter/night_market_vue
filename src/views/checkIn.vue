@@ -140,21 +140,22 @@ export default defineComponent({
 </template>
 
 <style>
-.wrap{
-background: url("@/assets/img/index_bg.png") center top no-repeat;
-  height: 100vh;
-background-size: cover;
-}
-.button_group{
-  text-align: center;
-  padding: 3vw;
-}
-.button_group button{
-  font-size: 8vw;
-}
 
-@media screen {
 
+
+@media only screen and (max-width: 992px){
+  .wrap{
+    background: url("@/assets/img/index_bg.png") center top no-repeat;
+    height: 100vh;
+    background-size: cover;
+  }
+  .button_group{
+    text-align: center;
+    padding: 3vw;
+  }
+  .button_group button{
+    font-size: 8vw;
+  }
 }
 
 
