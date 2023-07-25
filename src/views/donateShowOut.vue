@@ -21,7 +21,7 @@ export default defineComponent({
   mounted() {
     setInterval(()=>{
       store.commit('setDonateList');
-    },(this.donateList.length*6+15)*1000);
+    },(this.donateList.length*6+20)*1000);
     store.commit('setDonateList');
     document.title = '歡喜金名錄'
   }
@@ -31,7 +31,7 @@ export default defineComponent({
 <template>
 <div class="wrap">
   <div class="carousel-item">
-    <el-carousel :interval="5000" indicator-position="none"  height="500px">
+    <el-carousel :interval="5000" indicator-position="none"  height="500px" arrow="never">
       <el-carousel-item >
         <h3 class="SliMoonQRCode-title" text="2xl" justify="center">銀月數位顧問股份有限公司</h3>
         <img class="SliMoonQRCode-img" src="@/assets/img/Sliver_Moon_LINE_QRcode.png" alt="銀月官方Line QR CODE">
@@ -51,6 +51,11 @@ export default defineComponent({
         <h3>{{ item.name }}  <i>歡喜金：{{ item.money }}</i> </h3>
         <br>
         <h4 text="2xl" justify="center">Note：{{ item.greeting }}</h4>
+      </el-carousel-item>
+      <el-carousel-item >
+        <h3 class="SliMoonQRCode-title" text="2xl" justify="center">銀月數位顧問股份有限公司</h3>
+        <img class="SliMoonQRCode-img" src="@/assets/img/Sliver_Moon_LINE_QRcode.png" alt="銀月官方Line QR CODE">
+        <p class="SliMoonNote" text="2xl" justify="center">⬆️⬆️⬆️軟體系統開發諮詢⬆️⬆️⬆️</p>
       </el-carousel-item>
     </el-carousel>
   </div>

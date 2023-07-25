@@ -31,11 +31,11 @@ export default defineComponent({
         if (this.Group_Name === '') {
           return '請輸入姓名或單位'
         }
-        if (this.greeting === '') {
-          return '請輸入Note'
-        }
-        if (this.money) {
-          return '請輸入金額'
+        // if (this.greeting === '') {
+        //   return '請輸入Note'
+        // }
+        if (this.money===''||Number(this.money)<=0) {
+          return '請輸入正確金額'
         }
       } else {
         return true
