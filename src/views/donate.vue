@@ -54,7 +54,8 @@ export default defineComponent({
         let putData = {
           "fromName": this.Group_Name,
           "note": this.greeting,
-          "price": this.money
+          "price": this.money,
+          "type":this.payment
         }
         donate.donate(putData).then(res => {
           if (res.code === 0) {
@@ -99,8 +100,8 @@ export default defineComponent({
         <div class="input-group">
           <label>付款方式</label>
           <el-select class="inputBox" v-model="payment" placeholder="請選擇付款方式" size="large" >
-            <el-option value="現金" label="現金"></el-option>
-            <el-option value="匯款" label="匯款"></el-option>
+            <el-option value="1" label="現金"></el-option>
+            <el-option value="2" label="匯款"></el-option>
           </el-select>
         </div>
         <div class="input-group">
