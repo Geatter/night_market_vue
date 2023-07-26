@@ -8,10 +8,12 @@ export default defineComponent({
     return {
       Group_Name: '',
       greeting: '',
+      payment:'',
       money: '',
       showDialog: false,
       resultOfOperate: '',
       dialogTitle: '',
+      clean:false,
     }
   },
   mounted() {
@@ -31,9 +33,9 @@ export default defineComponent({
         if (this.Group_Name === '') {
           return '請輸入姓名或單位'
         }
-        // if (this.greeting === '') {
-        //   return '請輸入Note'
-        // }
+        if (this.payment === '') {
+          return '請選擇付款方式'
+        }
         if (this.money===''||Number(this.money)<=0) {
           return '請輸入正確金額'
         }
@@ -44,7 +46,8 @@ export default defineComponent({
     submit() {
       let verify = this.VerifyData();
       if (typeof verify === "string") {
-        this.showDialog = true
+        this.showDialog = true;
+        this.clean=false;
         this.dialogTitle = '錯誤!!'
         this.resultOfOperate = verify
       } else {
@@ -56,6 +59,7 @@ export default defineComponent({
         donate.donate(putData).then(res => {
           if (res.code === 0) {
             this.showDialog = true
+            this.clean=true
             this.dialogTitle = '歡喜金發送成功!!'
             this.resultOfOperate = '非常感謝您的支持與愛護'
           }
@@ -64,11 +68,15 @@ export default defineComponent({
     },
     dialogClose() {
       this.showDialog = false;
-      this.Group_Name = '';
-      this.greeting = '';
-      this.money = '';
-      this.resultOfOperate = '';
-      this.dialogTitle = '';
+      if(this.clean){
+        this.Group_Name = '';
+        this.greeting = '';
+        this.money = '';
+        this.payment='';
+        this.resultOfOperate = '';
+        this.dialogTitle = '';
+        this.clean=false;
+      }
     }
   }
 })
@@ -87,6 +95,13 @@ export default defineComponent({
           <label>Note</label>
           <span>(限20個字)</span>
           <el-input class="inputBox" maxlength="20" v-model="greeting" type="text"></el-input>
+        </div>
+        <div class="input-group">
+          <label>付款方式</label>
+          <el-select class="inputBox" v-model="payment" placeholder="請選擇付款方式" size="large" >
+            <el-option value="現金" label="現金"></el-option>
+            <el-option value="匯款" label="匯款"></el-option>
+          </el-select>
         </div>
         <div class="input-group">
           <label>歡喜金</label>
@@ -126,6 +141,7 @@ export default defineComponent({
   .donate-container {
     width: 95%;
     margin: auto;
+    top:16%;
   }
 
   h2 {

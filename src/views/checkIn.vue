@@ -14,6 +14,7 @@ export default defineComponent({
       // 進入畫面時預設標籤顯示位置
       activeName:'first',
       showDialog:false,
+      clean:false,
       resultOfOperate:'',
       resultOfOperate_2:'',
       dialogTitle:'',
@@ -50,6 +51,7 @@ export default defineComponent({
                 this.$refs.member.value_memberId='';
               }else {
                 this.showDialog=true;
+                this.clean=false;
                 this.dialogTitle = "錯誤:"+res.code;
                 this.resultOfOperate ='請聯絡現場服務人員';
               }
@@ -79,6 +81,7 @@ export default defineComponent({
                 this.$refs.guest.name_guest='';
               }else {
                 this.showDialog=true;
+                this.clean=false;
                 this.dialogTitle = "錯誤:"+res.code;
                 this.resultOfOperate ='請聯絡現場服務人員';
               }
@@ -87,16 +90,20 @@ export default defineComponent({
           break
       }
       if(typeof verify === "string"){
-        this.showDialog = true
+        this.showDialog = true;
+        this.clean=false;
         this.dialogTitle = '錯誤!!'
         this.resultOfOperate = verify
       }
     },
     dialogClose(){
       this.showDialog = false;
-      this.resultOfOperate = '';
-      this.resultOfOperate_2 = '';
-      this.dialogTitle = '';
+      if(this.clean){
+        this.resultOfOperate = '';
+        this.resultOfOperate_2 = '';
+        this.dialogTitle = '';
+        this.clean=false;
+      }
     }
   }
 })
