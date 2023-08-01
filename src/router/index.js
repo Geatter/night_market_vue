@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import CheckIn from "@/views/checkIn.vue"
 import Donate from '@/views/donate.vue'
 import DonateShowOut from "@/views/donateShowOut.vue";
+import printOut from "@/views/printOut.vue";
 
 
 const routes = [
@@ -19,6 +20,11 @@ const routes = [
     path: '/ShowOut',
     name: 'DonateShowOut',
     component: DonateShowOut
+  },
+  {
+    path: '/Print',
+    name: 'printOut',
+    component: printOut
   }
 ]
 

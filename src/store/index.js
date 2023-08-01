@@ -22,7 +22,6 @@ export default createStore({
                           }
                         processedArry.push(el);
                     })
-                    console.log(processedArry)
                     if(state.donateList.length ===processedArry.length ){
                         processedArry=[];
                     }else {
